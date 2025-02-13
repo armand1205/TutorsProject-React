@@ -1,16 +1,19 @@
 import React from "react";
-import Paper from "../../components/Paper";
+import Paper from "../../Paper/Paper";
 import catIcon from "../../assets/Cat-icon.png";
 import Tutor from "../../components/Tutor/Tutor";
 import Button from "../../components/Button/Button";
 import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";
+import styles from "./Tutors.module.css";
 
 export default function Tutors({ tutors }) {
   return (
-    <div>
-      <img src={catIcon} alt="Cat Icon" />
-      <h1>Tutors</h1>
+    <div className={styles.tutorsContainer}>
+      <div className={styles.tutors}>
+        <img src={catIcon} alt="Cat Icon" />
+        <h1>TUTORS</h1>
+      </div>
       {tutors.map((tutor, index) => {
         return (
           <Paper key={index}>

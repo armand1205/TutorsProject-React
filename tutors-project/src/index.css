@@ -29,9 +29,3 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-.layout {
-  display: flex;
-  justify-content: space-between;
-  height: 100vh;
-}

@@ -1,8 +1,9 @@
 import React from "react";
 import propTypes from "prop-types";
+import styles from "./MenuItem.module.css";
 
 function MenuItem({ name }) {
-  return <div>{name}</div>;
+  return <p className={styles.tabsTabText}>{name}</p>;
 }
 
 MenuItem.propTypes = {

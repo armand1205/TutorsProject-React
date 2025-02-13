@@ -1,6 +1,6 @@
 import React from "react";
 import facultiesIcon from "../../assets/Faculties-icon.png";
-import Paper from "../../components/Paper";
+import Paper from "../../Paper/Paper";
 import Button from "../../components/Button/Button";
 import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";

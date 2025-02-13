@@ -1,8 +1,12 @@
+import { HiBookOpen, HiAcademicCap } from "react-icons/hi";
+
 export const menuConfig = [
   {
-    name: "Univeristy",
+    name: "UNIVERSITY",
+    icon: <HiBookOpen />,
   },
   {
-    name: "Faculties",
+    name: "FACULTIES",
+    icon: <HiAcademicCap />,
   },
 ];

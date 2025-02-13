@@ -1,0 +1,25 @@
+.tutorsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tutors {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+
+.tutors img {
+  width: 24px;
+  height: 24px;
+}
+
+.tutors h1 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 1.25px;
+}

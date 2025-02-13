@@ -1,6 +1,6 @@
 import React from "react";
 import citiesIcon from "../../assets/Cities-icon.png";
-import Paper from "../../components/Paper";
+import Paper from "../../Paper/Paper";
 import Button from "../../components/Button/Button";
 import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";

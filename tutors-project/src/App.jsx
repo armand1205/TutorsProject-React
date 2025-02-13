@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Main from "./components/Main";
+import Main from "./components/Main/Main";
+import styles from "./App.module.css";
 
 // import Menu from "./components/Menu";
 // import MenuItem from "./components/MenuItem";
@@ -15,7 +16,7 @@ import Main from "./components/Main";
 
 function App() {
   return (
-    <div>
+    <div className={styles.layout}>
       <Sidebar />
       <Main />
     </div>
