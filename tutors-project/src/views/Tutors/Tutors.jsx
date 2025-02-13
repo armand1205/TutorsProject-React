@@ -7,7 +7,6 @@ import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";
 
 export default function Tutors({ tutors }) {
-  console.log(tutors);
   return (
     <div>
       <img src={catIcon} alt="Cat Icon" />
