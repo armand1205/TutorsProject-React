@@ -12,7 +12,7 @@ export default function Faculties({ faculties }) {
     <div className={styles.facultiesContainer}>
       <div className={styles.faculties}>
         <img src={facultiesIcon} alt="Faculties Icon" />
-        <h1>Faculties</h1>
+        <h1>FACULTIES</h1>
       </div>
       <div className={styles.faculty}>
         {faculties.map((faculty, index) => {
