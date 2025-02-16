@@ -11,4 +11,6 @@
 .form input {
   padding: 10px;
   font-size: 16px;
+  max-width: 400px;
+  border: 2px solid rgb(163, 163, 163);
 }

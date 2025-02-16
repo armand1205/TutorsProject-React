@@ -6,13 +6,18 @@ import Button from "../../components/Button/Button";
 import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";
 import styles from "./Tutors.module.css";
-import TutorForm from "../../components/TutorForm/TutorForm";
+import TutorForm from "../../components/Forms/TutorForm/TutorForm";
 
-export default function Tutors({ tutors }) {
+export default function Tutors({ data }) {
   const [showForm, setShowForm] = useState(false);
+  const [tutors, setTutors] = useState(data);
 
   const onShowForm = () => {
     setShowForm(!showForm);
+  };
+
+  const onAddTutor = (tutor) => {
+    setTutors((prev) => [...prev, tutor]);
   };
 
   return (
@@ -38,7 +43,7 @@ export default function Tutors({ tutors }) {
 
       {showForm && (
         <Paper>
-          <TutorForm />
+          <TutorForm onAddTutor={onAddTutor} />
         </Paper>
       )}
       <Button icon={<FaCirclePlus />} text={"ADD TUTOR"} onClick={onShowForm} />

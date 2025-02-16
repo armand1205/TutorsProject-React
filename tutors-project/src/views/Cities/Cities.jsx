@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import citiesIcon from "../../assets/Cities-icon.png";
 import Paper from "../../Paper/Paper";
 import Button from "../../components/Button/Button";
@@ -8,6 +8,11 @@ import InfoBlock from "../../components/InfoBlock/InfoBlock";
 import styles from "./Cities.module.css";
 
 export default function Cities({ cities }) {
+  const [showForm, setShowForm] = useState(false);
+  const onShowForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className={styles.citiesContainer}>
       <div className={styles.cities}>
@@ -23,7 +28,18 @@ export default function Cities({ cities }) {
           );
         })}
       </div>
-      <Button icon={<FaCirclePlus />} text={"ADD CITY"} onClick={null} />{" "}
+      {showForm && (
+        <Paper>
+          <div className={styles.formContainer}>
+            <h4>Add new city</h4>
+            <form action="" className={styles.form}>
+              <input type="text" placeholder="Enter new city" />
+              <Button text={"ADD"} />
+            </form>
+          </div>
+        </Paper>
+      )}
+      <Button icon={<FaCirclePlus />} text={"ADD CITY"} onClick={onShowForm} />{" "}
     </div>
   );
 }

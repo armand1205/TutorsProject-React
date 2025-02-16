@@ -15,7 +15,7 @@ export default function Main() {
         <Card />
         <Description />
       </div>
-      <Tutors tutors={collectionData.tutors} />
+      <Tutors data={collectionData.tutors} />
       <Cities cities={collectionData.cities} />
       <Faculties faculties={collectionData.department} />
     </div>
