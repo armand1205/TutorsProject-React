@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "../../Paper/Paper";
 import catIcon from "../../assets/Cat-icon.png";
 import Tutor from "../../components/Tutor/Tutor";
@@ -6,8 +6,15 @@ import Button from "../../components/Button/Button";
 import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";
 import styles from "./Tutors.module.css";
+import TutorForm from "../../components/TutorForm/TutorForm";
 
 export default function Tutors({ tutors }) {
+  const [showForm, setShowForm] = useState(false);
+
+  const onShowForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className={styles.tutorsContainer}>
       <div className={styles.tutors}>
@@ -28,7 +35,13 @@ export default function Tutors({ tutors }) {
           </Paper>
         );
       })}
-      <Button icon={<FaCirclePlus />} text={"ADD TUTOR"} onClick={null} />
+
+      {showForm && (
+        <Paper>
+          <TutorForm />
+        </Paper>
+      )}
+      <Button icon={<FaCirclePlus />} text={"ADD TUTOR"} onClick={onShowForm} />
     </div>
   );
 }

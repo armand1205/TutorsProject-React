@@ -12,6 +12,8 @@
 }
 
 .buttons {
+  background-color: white;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,13 +22,22 @@
 }
 
 .buttons button {
+  background-color: white;
+
   width: 24px;
   height: 24px;
   border: none;
   padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2sease;
+}
+
+.buttons button:hover {
+  background-color: #f1f1f1;
 }
 
 .buttons button svg {
+  color: #424242;
   width: 24px;
   height: 24px;
 }

@@ -1,25 +1,33 @@
-.tutorsContainer {
+.citiesContainer {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.tutors {
+.cities {
   display: flex;
   flex-direction: row;
-  justify-content: start;
   align-items: center;
+  justify-content: flex-start;
   gap: 8px;
 }
 
-.tutors img {
+.cities img {
   width: 24px;
   height: 24px;
 }
 
-.tutors h1 {
+.cities h1 {
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 1.25px;
+}
+
+.city {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
 }

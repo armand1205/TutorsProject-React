@@ -12,8 +12,21 @@
   line-height: 24px;
   letter-spacing: 1.25px;
   font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+.button:hover {
+  background-color: #ff7d2e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.button:active {
+  background-color: #e55f00;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px) scale(0.98);
+}
 .button svg {
   width: 16px;
   height: 16px;
