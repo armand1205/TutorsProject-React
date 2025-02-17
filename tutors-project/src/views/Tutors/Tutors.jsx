@@ -18,6 +18,7 @@ export default function Tutors({ data }) {
 
   const onAddTutor = (tutor) => {
     setTutors((prev) => [...prev, tutor]);
+    setShowForm(false);
   };
 
   return (

@@ -27,24 +27,8 @@
 .city {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 32px;
-}
-
-.formContainer h4 {
-  margin-bottom: 20px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form input {
-  padding: 10px;
-  font-size: 16px;
-  max-width: 400px;
-  border: 2px solid rgb(163, 163, 163);
 }

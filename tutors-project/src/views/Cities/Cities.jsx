@@ -6,11 +6,20 @@ import { FaCirclePlus } from "react-icons/fa6";
 import propTypes from "prop-types";
 import InfoBlock from "../../components/InfoBlock/InfoBlock";
 import styles from "./Cities.module.css";
+import CityForm from "../../components/Forms/CityForm/CityForm";
 
-export default function Cities({ cities }) {
+export default function Cities({ data }) {
   const [showForm, setShowForm] = useState(false);
+
+  const [cities, setCities] = useState(data);
+
   const onShowForm = () => {
     setShowForm(!showForm);
+  };
+
+  const onAddCity = (city) => {
+    setCities((prev) => [...prev, city]);
+    setShowForm(false);
   };
 
   return (
@@ -30,13 +39,7 @@ export default function Cities({ cities }) {
       </div>
       {showForm && (
         <Paper>
-          <div className={styles.formContainer}>
-            <h4>Add new city</h4>
-            <form action="" className={styles.form}>
-              <input type="text" placeholder="Enter new city" />
-              <Button text={"ADD"} />
-            </form>
-          </div>
+          <CityForm onAddCity={onAddCity} />
         </Paper>
       )}
       <Button icon={<FaCirclePlus />} text={"ADD CITY"} onClick={onShowForm} />{" "}
