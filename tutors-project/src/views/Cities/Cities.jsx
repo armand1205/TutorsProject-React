@@ -22,6 +22,14 @@ export default function Cities({ data }) {
     setShowForm(false);
   };
 
+  const onDeleteCity = (city) => {
+    setCities((prev) => prev.filter((item) => item !== city));
+  };
+
+  const onEditCity = (city, newCity) => {
+    setCities((prev) => prev.map((item) => (item === city ? newCity : item)));
+  };
+
   return (
     <div className={styles.citiesContainer}>
       <div className={styles.cities}>
@@ -32,7 +40,12 @@ export default function Cities({ data }) {
         {cities.map((city, index) => {
           return (
             <Paper key={index}>
-              <InfoBlock info={city} />
+              <InfoBlock
+                type={"CITY"}
+                info={city}
+                onDelete={onDeleteCity}
+                onEdit={onEditCity}
+              />
             </Paper>
           );
         })}
