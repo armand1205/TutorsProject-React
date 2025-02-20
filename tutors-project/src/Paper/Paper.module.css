@@ -1,6 +1,7 @@
 .paper {
   background-color: white;
   padding: 20px;
+  transition: box-shadow 0.2s ease;
 }
 
 .paper:hover {
