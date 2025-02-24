@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import facultiesIcon from "../../assets/Faculties-icon.png";
 import Paper from "../../Paper/Paper";
 import Button from "../../components/Button/Button";
@@ -8,8 +8,8 @@ import InfoBlock from "../../components/InfoBlock/InfoBlock";
 import styles from "./Faculties.module.css";
 import FacultyForm from "../../components/Forms/FacultyForm/FacultyForm";
 
-export default function Faculties({ data }) {
-  const [faculties, setFaculties] = useState(data);
+export default function Faculties() {
+  const [faculties, setFaculties] = useState();
   const [showForm, setShowForm] = useState(false);
 
   const onShowForm = () => {
@@ -21,6 +21,15 @@ export default function Faculties({ data }) {
     setShowForm(false);
   };
 
+  useEffect(() => {
+    if (faculties) localStorage.setItem("faculties", JSON.stringify(faculties));
+  }, [faculties]);
+
+  useEffect(() => {
+    const localStorageFaculties = JSON.parse(localStorage.getItem("faculties"));
+    setFaculties(localStorageFaculties);
+  }, []);
+
   return (
     <div className={styles.facultiesContainer}>
       <div className={styles.faculties}>
@@ -28,7 +37,7 @@ export default function Faculties({ data }) {
         <h1>FACULTIES</h1>
       </div>
       <div className={styles.faculty}>
-        {faculties.map((faculty, index) => {
+        {faculties?.map((faculty, index) => {
           return (
             <Paper key={index}>
               <InfoBlock info={faculty.name} />

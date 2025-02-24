@@ -3,11 +3,11 @@ import styles from "./CityForm.module.css";
 import Button from "../../Button/Button";
 
 export default function CityForm({ onAddCity }) {
-  const [city, setCity] = useState([""]);
+  const [city, setCity] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = [city];
+    const formData = city;
     onAddCity(formData);
   };
 

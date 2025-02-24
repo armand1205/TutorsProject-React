@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "../../Paper/Paper";
 import catIcon from "../../assets/Cat-icon.png";
 import Tutor from "../../components/Tutor/Tutor";
@@ -8,9 +8,9 @@ import propTypes from "prop-types";
 import styles from "./Tutors.module.css";
 import TutorForm from "../../components/Forms/TutorForm/TutorForm";
 
-export default function Tutors({ data }) {
+export default function Tutors() {
+  const [tutors, setTutors] = useState();
   const [showForm, setShowForm] = useState(false);
-  const [tutors, setTutors] = useState(data);
 
   const onShowForm = () => {
     setShowForm(!showForm);
@@ -21,13 +21,22 @@ export default function Tutors({ data }) {
     setShowForm(false);
   };
 
+  useEffect(() => {
+    const tutorsLocalStorage = JSON.parse(localStorage.getItem("tutors"));
+    setTutors(tutorsLocalStorage);
+  }, []);
+
+  useEffect(() => {
+    if (tutors) localStorage.setItem("tutors", JSON.stringify(tutors));
+  }, [tutors]);
+
   return (
     <div className={styles.tutorsContainer}>
       <div className={styles.tutors}>
         <img src={catIcon} alt="Cat Icon" />
         <h1>TUTORS</h1>
       </div>
-      {tutors.map((tutor, index) => {
+      {tutors?.map((tutor, index) => {
         return (
           <Paper key={index}>
             <Tutor

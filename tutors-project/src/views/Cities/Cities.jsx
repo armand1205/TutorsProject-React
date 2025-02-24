@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import citiesIcon from "../../assets/Cities-icon.png";
 import Paper from "../../Paper/Paper";
 import Button from "../../components/Button/Button";
@@ -30,6 +30,15 @@ export default function Cities({ data }) {
     setCities((prev) => prev.map((item) => (item === city ? newCity : item)));
   };
 
+  useEffect(() => {
+    if (cities) localStorage.setItem("cities", JSON.stringify(cities));
+  }, [cities]);
+
+  useEffect(() => {
+    const localStorageCities = JSON.parse(localStorage.getItem("cities"));
+    setCities(localStorageCities);
+  }, []);
+
   return (
     <div className={styles.citiesContainer}>
       <div className={styles.cities}>
@@ -37,7 +46,7 @@ export default function Cities({ data }) {
         <h1>CITIES</h1>
       </div>
       <div className={styles.city}>
-        {cities.map((city, index) => {
+        {cities?.map((city, index) => {
           return (
             <Paper key={index}>
               <InfoBlock
