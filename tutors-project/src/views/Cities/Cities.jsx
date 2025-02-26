@@ -8,35 +8,76 @@ import InfoBlock from "../../components/InfoBlock/InfoBlock";
 import styles from "./Cities.module.css";
 import CityForm from "../../components/Forms/CityForm/CityForm";
 
-export default function Cities({ data }) {
-  const [showForm, setShowForm] = useState(false);
+import { citiesApi } from "../../api/api";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
-  const [cities, setCities] = useState(data);
+export default function Cities() {
+  const [showForm, setShowForm] = useState(false);
+  const [cities, setCities] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const onShowForm = () => {
     setShowForm(!showForm);
   };
 
-  const onAddCity = (city) => {
-    setCities((prev) => [...prev, city]);
+  const onAddCity = async (city) => {
+    try {
+      const response = await citiesApi.create({ name: city });
+      setCities((prev) => [...prev, response.data]);
+    } catch (error) {
+      setError("A aparut o eroare la adaugarea orasului");
+    }
     setShowForm(false);
   };
 
-  const onDeleteCity = (city) => {
-    setCities((prev) => prev.filter((item) => item !== city));
+  const onDeleteCity = async (id) => {
+    try {
+      // nu avem nevoie de response
+      await citiesApi.delete(id);
+      setCities((prev) => prev.filter((item) => item.id !== id));
+    } catch (error) {
+      setError("A aparut o eroare la stergerea orasului");
+    }
   };
 
-  const onEditCity = (city, newCity) => {
-    setCities((prev) => prev.map((item) => (item === city ? newCity : item)));
+  const onEditCity = async (id, newCity) => {
+    try {
+      const response = await citiesApi.update(id, { name: newCity });
+      setCities((prev) =>
+        prev.map((item) => (item.id === id ? response.data : item))
+      );
+    } catch (error) {
+      setError("A aparut o eroare la editarea orasului");
+    }
   };
+  // 1. daca vream sa folosim localStorage
 
-  useEffect(() => {
-    if (cities) localStorage.setItem("cities", JSON.stringify(cities));
-  }, [cities]);
+  // useEffect(() => {
+  //   if (cities) localStorage.setItem("cities", JSON.stringify(cities));
+  // }, [cities]);
 
+  // useEffect(() => {
+  //   const localStorageCities = JSON.parse(localStorage.getItem("cities"));
+  //   setCities(localStorageCities);
+  // }, []);
+
+  // 2. daca vrem sa folosim API
   useEffect(() => {
-    const localStorageCities = JSON.parse(localStorage.getItem("cities"));
-    setCities(localStorageCities);
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const response = await citiesApi.getAll();
+        setCities(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError("Este o problema la cererea catre /cities");
+        setIsLoading(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
@@ -46,18 +87,27 @@ export default function Cities({ data }) {
         <h1>CITIES</h1>
       </div>
       <div className={styles.city}>
-        {cities?.map((city, index) => {
-          return (
-            <Paper key={index}>
-              <InfoBlock
-                type={"CITY"}
-                info={city}
-                onDelete={onDeleteCity}
-                onEdit={onEditCity}
-              />
-            </Paper>
-          );
-        })}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <>
+            {cities?.map((city, index) => {
+              return (
+                <Paper key={index}>
+                  <InfoBlock
+                    type={"CITY"}
+                    id={city.id}
+                    info={city.name}
+                    onDelete={onDeleteCity}
+                    onEdit={onEditCity}
+                  />
+                </Paper>
+              );
+            })}
+          </>
+        )}
       </div>
       {showForm && (
         <Paper>

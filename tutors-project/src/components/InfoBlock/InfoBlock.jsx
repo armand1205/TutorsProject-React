@@ -6,7 +6,7 @@ import Modal from "../Modal/Modal";
 import editImg from "../../assets/editImg.png";
 import deleteImg from "../../assets/deleteImg.png";
 
-export default function InfoBlock({ type, info, onDelete, onEdit }) {
+export default function InfoBlock({ type, id, info, onDelete, onEdit }) {
   const [modal, setModal] = useState(false);
   const [newName, setNewName] = useState("");
 
@@ -34,12 +34,12 @@ export default function InfoBlock({ type, info, onDelete, onEdit }) {
   };
 
   const handlerDelete = () => {
-    onDelete(info);
+    onDelete(id);
     setIsModalOpen(false);
   };
 
   const handlerEdit = () => {
-    onEdit(info, newName);
+    onEdit(id, newName);
     setIsModalOpen(false);
   };
 

@@ -2,9 +2,9 @@ import React from "react";
 import Card from "../../views/Card/Card";
 import Description from "../../views/Description/Description";
 import Tutors from "../../views/Tutors/Tutors";
-// import Cities from "../../views/Cities/Cities";
+import Cities from "../../views/Cities/Cities";
 // import Faculties from "../../views/Faculties/Faculties";
-import collectionData from "../../data/colectionData.json";
+// import collectionData from "../../data/colectionData.json";
 import styles from "./Main.module.css";
 
 export default function Main() {
@@ -15,9 +15,9 @@ export default function Main() {
         <Card />
         <Description />
       </div>
-      <Tutors data={collectionData.tutors} />
-      {/* <Cities data={collectionData.cities} />
-      <Faculties data={collectionData.department} /> */}
+      <Tutors />
+      <Cities />
+      {/* <Faculties data={collectionData.department} /> */}
     </div>
   );
 }
